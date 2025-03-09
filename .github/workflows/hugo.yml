@@ -1,0 +1,197 @@
+name: Deploy Hugo site to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.123.8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
+      - name: Create Hugo templates directory
+        run: |
+          mkdir -p .github/hugo-templates/layouts/_default
+          mkdir -p .github/hugo-templates/layouts/partials
+          mkdir -p .github/hugo-templates/layouts/_markup
+          mkdir -p .github/hugo-templates/css
+
+      - name: Create basic Hugo templates
+        run: |
+          # Create baseof.html
+          cat > .github/hugo-templates/layouts/_default/baseof.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>{{ .Site.Title }}</title>
+            <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+          </head>
+          <body>
+            {{ partial "header.html" . }}
+            <main>
+              {{ block "main" . }}{{ end }}
+            </main>
+            {{ partial "footer.html" . }}
+          </body>
+          </html>
+          EOF
+
+          # Create single.html
+          cat > .github/hugo-templates/layouts/_default/single.html << 'EOF'
+          {{ define "main" }}
+            <article>
+              <h1>{{ .Title }}</h1>
+              {{ .Content }}
+            </article>
+          {{ end }}
+          EOF
+
+          # Create home.html
+          cat > .github/hugo-templates/layouts/_default/home.html << 'EOF'
+          {{ define "main" }}
+            <article>
+              <h1>{{ .Title }}</h1>
+              {{ .Content }}
+            </article>
+          {{ end }}
+          EOF
+
+          # Create header.html
+          cat > .github/hugo-templates/layouts/partials/header.html << 'EOF'
+          <header>
+            <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+            <p>{{ .Site.Params.description }}</p>
+          </header>
+          EOF
+
+          # Create footer.html
+          cat > .github/hugo-templates/layouts/partials/footer.html << 'EOF'
+          <footer>
+            <p>© {{ now.Format "2006" }} <a href="https://github.com/{{ .Site.Params.github_owner }}/{{ .Site.Params.github_repo }}" target="_blank">{{ .Site.Title }}</a></p>
+          </footer>
+          EOF
+
+          # Create taxonomy.html
+          cat > .github/hugo-templates/layouts/_default/taxonomy.html << 'EOF'
+          {{ define "main" }}
+            <h1>{{ .Title }}</h1>
+            <ul>
+              {{ range .Pages }}
+                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+              {{ end }}
+            </ul>
+          {{ end }}
+          EOF
+
+          # Create term.html
+          cat > .github/hugo-templates/layouts/_default/term.html << 'EOF'
+          {{ define "main" }}
+            <h1>{{ .Title }}</h1>
+            <ul>
+              {{ range .Pages }}
+                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+              {{ end }}
+            </ul>
+          {{ end }}
+          EOF
+
+          # Create render-link.html
+          cat > .github/hugo-templates/layouts/_markup/render-link.html << 'EOF'
+          <a href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>
+          EOF
+
+          # Create style.css
+          cat > .github/hugo-templates/css/style.css << 'EOF'
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+          }
+          a {
+            color: #0366d6;
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+          header, footer {
+            margin: 2rem 0;
+          }
+          EOF
+
+      - name: Run Hugo setup script
+        run: |
+          chmod +x .github/scripts/setup-hugo-local.sh
+          .github/scripts/setup-hugo-local.sh --base-url "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Build with Hugo
+        run: |
+          cd .github/hugo-site
+          hugo --gc --minify
+
+      - name: Copy CNAME file
+        run: |
+          if [ -f "CNAME" ]; then
+            cp CNAME .github/hugo-site/public/
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .github/hugo-site/public
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
