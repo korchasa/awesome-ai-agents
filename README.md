@@ -111,7 +111,7 @@ Table of Contents:
 - [The-Pocket/PocketFlow](https://github.com/The-Pocket/PocketFlow) (★688 Jupyter Notebook) - PocketFlow is a lightweight Python framework that streamlines the creation of modular applications using LLM agents through a clear graph abstraction.
 - [Upsonic/Tiger](https://github.com/Upsonic/Tiger) (★433 Python) - Tiger is an integrated tool ecosystem empowering AI agents to intuitively control computer operations.
 - [X-PLUG/MobileAgent](https://github.com/X-PLUG/MobileAgent) (★3612 Python) - Mobile-Agent is a multi-agent driven assistant for mobile devices that enhances automation and operational capabilities through self-evolution.
-- [agno-agi/agno](https://github.com/agno-agi/agno) (★20441 Python) - Agno is a lightweight Python library designed for building high-performance multimodal AI agents that integrate memory, knowledge, and tools.
+- [agno-agi/agno](https://github.com/agno-agi/agno) (★20442 Python) - Agno is a lightweight Python library designed for building high-performance multimodal AI agents that integrate memory, knowledge, and tools.
 - [aiplanethub/openagi](https://github.com/aiplanethub/openagi) (★318 Jupyter Notebook) - OpenAGI is an open-source Python framework for building intelligent, autonomous human-like agents.
 - [antgroup/agentUniverse](https://github.com/antgroup/agentUniverse) (★1235 Python) - agentUniverse is a Python-based multi-agent framework that enables the creation and deployment of collaborative intelligent agents using large language models.
 - [ashishpatel26/500-AI-Agents-Projects](https://github.com/ashishpatel26/500-AI-Agents-Projects) (★461 ) - This project offers a comprehensive collection of practical AI agent use cases, showcasing transformative applications across various industries.
@@ -131,7 +131,7 @@ Table of Contents:
 - [fetchai/uAgents](https://github.com/fetchai/uAgents) (★1274 Python) - uAgents is a Python framework for creating autonomous decentralized AI agents with integrated blockchain functionality.
 - [geekan/MetaGPT](https://github.com/geekan/MetaGPT) (★51397 Python) - MetaGPT is a multi-agent framework that utilizes GPT models to collaboratively execute complex software development tasks.
 - [i-am-bee/bee-agent-framework](https://github.com/i-am-bee/bee-agent-framework) (★1800 TypeScript) - The Bee Agent Framework is an open-source library for building scalable, production-ready multi-agent systems in Python and TypeScript.
-- [i-am-bee/beeai-framework](https://github.com/i-am-bee/beeai-framework) (★1990 TypeScript) - BeeAI Framework is an open-source library for creating and deploying production-ready multi-agent systems in Python and TypeScript.
+- [i-am-bee/beeai-framework](https://github.com/i-am-bee/beeai-framework) (★1991 TypeScript) - BeeAI Framework is an open-source library for creating and deploying production-ready multi-agent systems in Python and TypeScript.
 - [idosal/AgentLLM](https://github.com/idosal/AgentLLM) (★401 JavaScript) - AgentLLM is a proof-of-concept project showcasing browser-native autonomous agents powered by an embedded large language model.
 - [jbexta/AgentPilot](https://github.com/jbexta/AgentPilot) (★410 Python) - AgentPilot is an AI-driven workflow automation platform that facilitates the creation and management of complex multi-agent tasks and chats.
 - [kaiban-ai/KaibanJS](https://github.com/kaiban-ai/KaibanJS) (★1034 JavaScript) - KaibanJS is a JavaScript framework designed to manage multi-agent systems and orchestrate AI tasks using a Kanban-inspired workflow.
@@ -293,7 +293,7 @@ Table of Contents:
 - [askui/vision-agent](https://github.com/askui/vision-agent) (★276 Python) - The AskUI Vision Agent automates native device interactions using AI-driven UI commands, providing a flexible and secure solution for enterprises.
 - [inferablehq/inferable](https://github.com/inferablehq/inferable) (★344 TypeScript) - Inferable is a managed platform for building production-ready autonomous LLM-based applications with integrated workflows and human-in-the-loop capabilities.
 - [julep-ai/julep](https://github.com/julep-ai/julep) (★4901 Jupyter Notebook) - Julep is a serverless platform that empowers data and machine learning teams to build sophisticated AI workflows with integrated agent capabilities.
-- [khoj-ai/khoj](https://github.com/khoj-ai/khoj) (★26583 Python) - Khoj is a self-hostable AI personal assistant that streamlines information retrieval and organization through customizable agents.
+- [khoj-ai/khoj](https://github.com/khoj-ai/khoj) (★26584 Python) - Khoj is a self-hostable AI personal assistant that streamlines information retrieval and organization through customizable agents.
 - [kyegomez/swarms](https://github.com/kyegomez/swarms) (★4690 Python) - Swarms is a production-ready Python framework designed to orchestrate enterprise-grade multi-agent systems for complex workflows.
 - [lmnr-ai/flow](https://github.com/lmnr-ai/flow) (★911 Python) - Flow is a lightweight Python-based task engine designed for building stateful, dynamic AI agents that execute tasks concurrently with advanced scheduling, state management, and tracing capabilities.
 - [microsoft/UFO](https://github.com/microsoft/UFO) (★6600 Python) - UFO is a Microsoft-developed multi-agent framework that automates interactions across Windows applications, enhancing user experiences with AI-driven solutions.
@@ -490,7 +490,7 @@ Table of Contents:
 - [NisaarAgharia/Advanced_RAG](https://github.com/NisaarAgharia/Advanced_RAG) (★295 Jupyter Notebook) - Advanced_RAG is a comprehensive repository of Python notebooks that explore advanced Retrieval-Augmented Generation techniques using Langchain and various AI agentic flows.
 - [eosphoros-ai/DB-GPT](https://github.com/eosphoros-ai/DB-GPT) (★15084 Python) - DB-GPT is an open-source AI native framework that enables the development of data applications using agent workflows and multi-agent collaboration.
 - [kimtth/awesome-azure-openai-llm](https://github.com/kimtth/awesome-azure-openai-llm) (★348 Python) - This repository is a curated list of Azure OpenAI and large language model resources, including RAG and agent references.
-- [llmware-ai/llmware](https://github.com/llmware-ai/llmware) (★11010 Python) - `llmware` is a Python framework that facilitates the development of enterprise-grade applications utilizing LLMs and RAG pipelines.
+- [llmware-ai/llmware](https://github.com/llmware-ai/llmware) (★11011 Python) - `llmware` is a Python framework that facilitates the development of enterprise-grade applications utilizing LLMs and RAG pipelines.
 - [mongodb-developer/GenAI-Showcase](https://github.com/mongodb-developer/GenAI-Showcase) (★1870 Jupyter Notebook) - A comprehensive repository offering examples and resources for integrating MongoDB with generative AI applications, with a focus on RAG pipelines and AI agents.
 - [video-db/StreamRAG](https://github.com/video-db/StreamRAG) (★461 Python) - StreamRAG is a GPT-powered video retrieval and streaming agent that allows developers to create searchable video libraries with summarized responses.
 
