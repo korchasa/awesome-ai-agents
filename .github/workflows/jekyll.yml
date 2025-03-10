@@ -4,7 +4,7 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches:
-      - feature/jekyll
+      - main
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,6 +23,21 @@ on:
         description: 'Jekyll version'
         required: false
         default: '4.3.2'
+        type: string
+      template_path:
+        description: 'Path to Jekyll templates (custom templates override theme)'
+        required: false
+        default: '.github/jekyll-templates'
+        type: string
+      theme:
+        description: 'Jekyll theme to use (e.g. jekyll-theme-minimal, jekyll-theme-cayman)'
+        required: false
+        default: 'jekyll-theme-minimal'
+        type: string
+      remote_theme:
+        description: 'Remote theme to use (e.g. pages-themes/minimal, mmistakes/minimal-mistakes)'
+        required: false
+        default: ''
         type: string
       menu_items:
         description: 'Menu items in JSON format (e.g. [{"name":"Home","url":"/"},{"name":"About","url":"/about"}])'
@@ -56,7 +71,11 @@ jobs:
       JEKYLL_VERSION: ${{ github.event.inputs.jekyll_version || '4.3.2' }}
       SITE_TITLE: ${{ github.event.inputs.site_title || 'Awesome AI Agents' }}
       SITE_DESCRIPTION: ${{ github.event.inputs.site_description || 'A curated list of awesome AI agents and tools' }}
+      TEMPLATE_PATH: ${{ github.event.inputs.template_path || '.github/jekyll-templates' }}
+      THEME: ${{ github.event.inputs.theme || 'jekyll-theme-minimal' }}
+      REMOTE_THEME: ${{ github.event.inputs.remote_theme || '' }}
       MENU_ITEMS: ${{ github.event.inputs.menu_items || '[{"name":"Home","url":"/"},{"name":"GitHub","url":"https://github.com/OWNER/REPO"}]' }}
+      DEFAULT_TEMPLATE_REPO: "korchasa/awesome-ai-agents"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -73,6 +92,30 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
 
+      # Проверяем существование директории с шаблонами
+      - name: Check template directory
+        id: check_templates
+        run: |
+          if [ -d "${{ env.TEMPLATE_PATH }}" ]; then
+            echo "templates_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "templates_exist=false" >> $GITHUB_OUTPUT
+            echo "::warning::Template directory ${{ env.TEMPLATE_PATH }} not found. Using theme settings instead."
+          fi
+
+      # Если шаблоны не существуют, клонируем репозиторий с шаблонами по умолчанию
+      - name: Clone default templates
+        if: steps.check_templates.outputs.templates_exist != 'true' && env.TEMPLATE_PATH != ''
+        run: |
+          git clone --depth 1 https://github.com/${{ env.DEFAULT_TEMPLATE_REPO }} temp_repo
+          mkdir -p ${{ env.TEMPLATE_PATH }}
+          if [ -d "temp_repo/${{ env.TEMPLATE_PATH }}" ]; then
+            cp -r temp_repo/${{ env.TEMPLATE_PATH }}/* ${{ env.TEMPLATE_PATH }}/
+          else
+            echo "::warning::Default templates not found in ${{ env.DEFAULT_TEMPLATE_REPO }}/${{ env.TEMPLATE_PATH }}. Will use theme settings."
+          fi
+          rm -rf temp_repo
+
       # Создаем данные для меню
       - name: Create menu data
         run: |
@@ -82,12 +125,12 @@ jobs:
           # Создаем данные для меню
           echo '${{ env.MENU_ITEMS }}' > _data/menu.json
 
-          # Создаем меню в формате для темы klise
-          echo "menus:" > _data/menus.yml
-          cat _data/menu.json | jq -r '.[] | "  - title: " + .name + "\n    url: " + .url + "\n    external: " + (if (.url | startswith("http")) then "true" else "false" end)' >> _data/menus.yml
+          # Конвертируем JSON в YAML для Jekyll
+          echo "menu:" > _data/menu.yml
+          cat _data/menu.json | jq -r '.[] | "  - name: \"" + .name + "\"\n    url: \"" + .url + "\""' >> _data/menu.yml
 
           # Заменяем OWNER/REPO в пунктах меню на реальные значения
-          sed -i "s|https://github.com/OWNER/REPO|https://github.com/$(echo $GITHUB_REPOSITORY)|g" _data/menus.yml
+          sed -i "s|https://github.com/OWNER/REPO|https://github.com/$(echo $GITHUB_REPOSITORY)|g" _data/menu.yml
 
       # Создаем конфигурацию Jekyll
       - name: Create Jekyll config
@@ -100,66 +143,26 @@ jobs:
           github_repo: "$(echo $GITHUB_REPOSITORY | cut -d '/' -f 2)"
           baseurl: "${{ steps.pages.outputs.base_path }}"
           url: "${{ steps.pages.outputs.origin }}"
+          EOF
 
-          # Тема klise
-          remote_theme: piharpi/jekyll-klise
+          # Добавляем тему, если указана
+          if [ -n "${{ env.THEME }}" ] && [ "${{ env.REMOTE_THEME }}" = "" ]; then
+            echo "theme: ${{ env.THEME }}" >> _config.yml
+          fi
 
-          # Theme klise settings
-          mode: light
-          author:
-            name: ${{ env.SITE_TITLE }}
-            bio: ${{ env.SITE_DESCRIPTION }}
-            username: $(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)
-            github: $(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)
-            email: ""
-            avatar: /assets/img/avatar.jpg
+          # Добавляем удаленную тему, если указана
+          if [ -n "${{ env.REMOTE_THEME }}" ]; then
+            echo "remote_theme: ${{ env.REMOTE_THEME }}" >> _config.yml
+          fi
 
-          # URL settings
-          permalink: /:title/
+          # Добавляем настройки Jekyll
+          cat >> _config.yml << EOF
 
-          # Collection setting
-          collections:
-            posts:
-              output: true
-
-          # Markdown settings
+          # Jekyll settings
           markdown: kramdown
-          highlighter: rouge
           kramdown:
-            syntax_highlighter: rouge
-
-          # Default front matter
-          defaults:
-            - scope:
-                path: ""
-              values:
-                layout: post
-                comments: false
-
-          # Jekyll Compose default front matter
-          jekyll_compose:
-            post_default_front_matter:
-              modified:
-              tags: []
-              description:
-            draft_default_front_matter:
-              modified:
-              tags: []
-              description:
-
-          # Build settings
-          sass:
-            style: compressed
-
-          include:
-            - _redirects
-            - .htaccess
-
-          # Plugins
-          plugins:
-            - jekyll-feed
-            - jekyll-sitemap
-            - jekyll-postfiles
+            input: GFM
+            hard_wrap: false
 
           # Exclude files from processing
           exclude:
@@ -177,105 +180,104 @@ jobs:
           gem "jekyll", "~> ${{ env.JEKYLL_VERSION }}"
           gem "github-pages", group: :jekyll_plugins
           gem "webrick", "~> 1.7"
-
-          # Plugins
-          group :jekyll_plugins do
-            gem "jekyll-feed", "~> 0.13"
-            gem "jekyll-sitemap", "~> 1.4"
-            gem "jekyll-postfiles", "~> 3.1"
-          end
           EOF
 
-      # Создаем необходимые директории и файлы для темы klise
-      - name: Setup klise theme
-        run: |
-          # Создаем директории
-          mkdir -p _posts _layouts _includes assets/img
-
-          # Создаем пустой аватар
-          convert -size 200x200 xc:lightgray -fill white -gravity center -font Arial -pointsize 72 -annotate 0 "AI" assets/img/avatar.jpg || echo "::warning::ImageMagick not available, using placeholder avatar"
-
-          # Если ImageMagick не доступен, создаем пустой файл
-          if [ ! -f "assets/img/avatar.jpg" ]; then
-            mkdir -p assets/img
-            touch assets/img/avatar.jpg
+          # Добавляем тему в Gemfile, если указана
+          if [ -n "${{ env.THEME }}" ] && [ "${{ env.REMOTE_THEME }}" = "" ]; then
+            echo "gem \"${{ env.THEME }}\"" >> Gemfile
           fi
 
-          # Создаем about.md
-          cat > about.md << EOF
+      # Подготавливаем Jekyll сайт с пользовательскими шаблонами (если есть)
+      - name: Prepare custom templates
+        if: steps.check_templates.outputs.templates_exist == 'true'
+        run: |
+          # Создаем структуру директорий Jekyll
+          mkdir -p _layouts _includes assets/css _posts
+
+          # Копируем шаблоны из указанной директории
+          if [ -d "${{ env.TEMPLATE_PATH }}/_layouts" ]; then
+            cp -r ${{ env.TEMPLATE_PATH }}/_layouts/* _layouts/
+          fi
+
+          if [ -d "${{ env.TEMPLATE_PATH }}/_includes" ]; then
+            cp -r ${{ env.TEMPLATE_PATH }}/_includes/* _includes/
+          fi
+
+          if [ -d "${{ env.TEMPLATE_PATH }}/assets" ]; then
+            cp -r ${{ env.TEMPLATE_PATH }}/assets/* assets/
+          fi
+
+      # Создаем файл для настройки CSS темы
+      - name: Create theme CSS customization
+        run: |
+          mkdir -p assets/css
+          cat > assets/css/style.scss << EOF
           ---
-          title: About
-          permalink: /about/
-          layout: page
-          excerpt: About page for ${{ env.SITE_TITLE }}
-          comments: false
           ---
 
-          ${{ env.SITE_DESCRIPTION }}
+          @import "{{ site.theme }}";
 
-          **Contact me**
-
-          - [GitHub](https://github.com/$(echo $GITHUB_REPOSITORY))
+          // Добавляем стили для меню
+          .main-nav {
+            margin: 1rem 0;
+          }
+          .main-nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+          }
+          .main-nav li {
+            margin-right: 1.5rem;
+            margin-bottom: 0.5rem;
+          }
+          .main-nav a {
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+          }
+          .main-nav a:hover {
+            border-color: currentColor;
+          }
+          @media (max-width: 600px) {
+            .main-nav ul {
+              flex-direction: column;
+            }
+            .main-nav li {
+              margin-bottom: 0.5rem;
+            }
+          }
           EOF
 
-          # Создаем archive.html
-          cat > archive.html << EOF
-          ---
-          title: Archive
-          permalink: /archive/
-          layout: page
-          excerpt: All posts.
-          comments: false
-          ---
+      # Создаем файл для настройки макета темы, если не существуют пользовательские шаблоны
+      - name: Create theme layout customization
+        if: steps.check_templates.outputs.templates_exist != 'true'
+        run: |
+          mkdir -p _layouts _includes
 
-          <div class="search-article">
-            <label for="search-input" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(128,128,128,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            </label>
-            <input type="search" id="search-input" placeholder="Find some articles here" aria-label="Search">
-          </div>
-
-          <ul class="post-list">
-            {%- for post in site.posts -%}
-            <li class="post-item">
-              <span class="post-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
-              <a class="post-item-title" href="{{ post.url }}">{{ post.title | escape }}</a>
-            </li>
-            {%- endfor -%}
-          </ul>
+          # Создаем шаблон для меню
+          cat > _includes/menu.html << EOF
+          <nav class="main-nav">
+            <ul>
+              {% for item in site.data.menu %}
+                <li><a href="{{ item.url }}" {% if item.url contains "http" %}target="_blank"{% endif %}>{{ item.name }}</a></li>
+              {% endfor %}
+            </ul>
+          </nav>
           EOF
 
-          # Создаем tags.html
-          cat > tags.html << EOF
-          ---
-          title: Tags
-          permalink: /tags/
-          layout: page
-          excerpt: All post tags.
-          ---
-
-          {% for tag in site.tags %}
-          <div class="tag-item">
-            <h4 class="tag-name" id="{{ tag[0] }}">{{ tag[0] }}</h4>
-            {% for post in tag[1] %}
-            <article class="tag-post">
-              <a href="{{ post.url }}">{{ post.title }}</a>
-              <span class="tag-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
-            </article>
-            {% endfor %}
-          </div>
-          {% endfor %}
+          # Создаем шаблон для пользовательского заголовка
+          cat > _includes/custom_head.html << EOF
+          <!-- Пользовательские метатеги и стили -->
           EOF
 
-          # Создаем 404.md
-          cat > 404.md << EOF
-          ---
-          title: Lost from journey
-          layout: 404
-          permalink: /404.html
-          ---
-
-          Looks like you're lost. Let's go <a href="/">home</a>!
+          # Создаем шаблон для пользовательского футера
+          cat > _includes/custom_footer.html << EOF
+          <!-- Пользовательский футер -->
+          <p>&copy; {{ site.time | date: "%Y" }} <a href="https://github.com/{{ site.github_owner }}/{{ site.github_repo }}" target="_blank">{{ site.title }}</a></p>
           EOF
 
       # Копируем контент
@@ -285,22 +287,17 @@ jobs:
           if [ -f "README.md" ]; then
             cp README.md index.md
             # Добавляем front matter
-            sed -i '1i---\ntitle: Home\nlayout: home\nexcerpt: Home page\n---\n' index.md
+            sed -i '1i---\nlayout: home\ntitle: Home\n---\n' index.md
           fi
 
           # Копируем другие markdown файлы
           for file in *.md; do
-            if [ "$file" != "README.md" ] && [ "$file" != "index.md" ] && [ "$file" != "about.md" ] && [ "$file" != "404.md" ] && [ -f "$file" ]; then
-              # Пропускаем файлы, которые уже созданы для темы klise
-              if [ "$file" = "archive.html" ] || [ "$file" = "tags.html" ]; then
-                continue
-              fi
-
+            if [ "$file" != "README.md" ] && [ "$file" != "index.md" ] && [ -f "$file" ]; then
               filename=$(basename -- "$file")
               name="${filename%.*}"
               cp "$file" "${name}.md"
               # Добавляем front matter
-              sed -i '1i---\ntitle: '"$name"'\nlayout: page\nexcerpt: '"$name"' page\n---\n' "${name}.md"
+              sed -i '1i---\nlayout: page\ntitle: '"$name"'\n---\n' "${name}.md"
             fi
           done
 
