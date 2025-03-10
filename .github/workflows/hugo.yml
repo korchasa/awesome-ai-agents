@@ -8,6 +8,32 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      site_title:
+        description: 'Site title'
+        required: false
+        default: 'Awesome AI Agents'
+        type: string
+      site_description:
+        description: 'Site description'
+        required: false
+        default: 'A curated list of awesome AI agents and tools'
+        type: string
+      hugo_version:
+        description: 'Hugo version'
+        required: false
+        default: '0.145.0'
+        type: string
+      use_extended:
+        description: 'Use Hugo extended version'
+        required: false
+        default: true
+        type: boolean
+      template_path:
+        description: 'Path to Hugo templates'
+        required: false
+        default: '.github/hugo-templates'
+        type: string
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -31,7 +57,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.145.0
+      # Use inputs from workflow_dispatch or default values
+      HUGO_VERSION: ${{ github.event.inputs.hugo_version || '0.145.0' }}
+      HUGO_CACHEDIR: /tmp/hugo_cache
+      SITE_TITLE: ${{ github.event.inputs.site_title || 'Awesome AI Agents' }}
+      SITE_DESCRIPTION: ${{ github.event.inputs.site_description || 'A curated list of awesome AI agents and tools' }}
+      TEMPLATE_PATH: ${{ github.event.inputs.template_path || '.github/hugo-templates' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,149 +71,100 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: ${{ env.HUGO_VERSION }}
-          extended: true
+          extended: ${{ github.event.inputs.use_extended || true }}
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
 
-      - name: Create Hugo templates directory
+      # Опционально: кэширование Hugo Modules, если вы их используете
+      - uses: actions/cache@v4
+        with:
+          path: ${{ env.HUGO_CACHEDIR }}
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-hugomod-
+
+      # Проверяем существование директории с шаблонами
+      - name: Check template directory
+        id: check_templates
         run: |
-          mkdir -p .github/hugo-templates/layouts/_default
-          mkdir -p .github/hugo-templates/layouts/partials
-          mkdir -p .github/hugo-templates/layouts/_markup
-          mkdir -p .github/hugo-templates/css
+          if [ -d "${{ env.TEMPLATE_PATH }}" ]; then
+            echo "templates_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "templates_exist=false" >> $GITHUB_OUTPUT
+            echo "::warning::Template directory ${{ env.TEMPLATE_PATH }} not found. Using default Hugo templates."
+          fi
 
-      - name: Create basic Hugo templates
+      # Копируем шаблоны из указанной директории в корневую директорию Hugo
+      - name: Prepare Hugo site
         run: |
-          # Create baseof.html
-          cat > .github/hugo-templates/layouts/_default/baseof.html << 'EOF'
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>{{ .Site.Title }}</title>
-            <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
-          </head>
-          <body>
-            {{ partial "header.html" . }}
-            <main>
-              {{ block "main" . }}{{ end }}
-            </main>
-            {{ partial "footer.html" . }}
-          </body>
-          </html>
+          # Создаем структуру директорий Hugo
+          mkdir -p layouts/_default layouts/partials layouts/_markup static/css content
+
+          # Копируем шаблоны, если они существуют
+          if [ "${{ steps.check_templates.outputs.templates_exist }}" = "true" ]; then
+            if [ -d "${{ env.TEMPLATE_PATH }}/layouts" ]; then
+              cp -r ${{ env.TEMPLATE_PATH }}/layouts/* layouts/
+            fi
+
+            if [ -d "${{ env.TEMPLATE_PATH }}/css" ]; then
+              cp -r ${{ env.TEMPLATE_PATH }}/css/* static/css/
+            fi
+          else
+            # Создаем базовые шаблоны, если директория с шаблонами не найдена
+            echo '<!DOCTYPE html><html><head><title>{{ .Site.Title }}</title></head><body>{{ .Content }}</body></html>' > layouts/_default/baseof.html
+            echo '{{ define "main" }}<h1>{{ .Title }}</h1>{{ .Content }}{{ end }}' > layouts/_default/single.html
+            echo '{{ define "main" }}<h1>{{ .Title }}</h1>{{ .Content }}{{ end }}' > layouts/_default/home.html
+          fi
+
+          # Создаем config.toml
+          cat > config.toml << EOF
+          baseURL = "${{ steps.pages.outputs.base_url }}/"
+          languageCode = "en-us"
+          title = "${{ env.SITE_TITLE }}"
+
+          [params]
+            description = "${{ env.SITE_DESCRIPTION }}"
+            github_owner = "$(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)"
+            github_repo = "$(echo $GITHUB_REPOSITORY | cut -d '/' -f 2)"
+
+          [markup]
+            [markup.goldmark]
+              [markup.goldmark.renderer]
+                unsafe = true
           EOF
 
-          # Create single.html
-          cat > .github/hugo-templates/layouts/_default/single.html << 'EOF'
-          {{ define "main" }}
-            <article>
-              <h1>{{ .Title }}</h1>
-              {{ .Content }}
-            </article>
-          {{ end }}
-          EOF
+          # Копируем README.md как главную страницу
+          if [ -f "README.md" ]; then
+            cp README.md content/_index.md
+          fi
 
-          # Create home.html
-          cat > .github/hugo-templates/layouts/_default/home.html << 'EOF'
-          {{ define "main" }}
-            <article>
-              <h1>{{ .Title }}</h1>
-              {{ .Content }}
-            </article>
-          {{ end }}
-          EOF
-
-          # Create header.html
-          cat > .github/hugo-templates/layouts/partials/header.html << 'EOF'
-          <header>
-            <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
-            <p>{{ .Site.Params.description }}</p>
-          </header>
-          EOF
-
-          # Create footer.html
-          cat > .github/hugo-templates/layouts/partials/footer.html << 'EOF'
-          <footer>
-            <p>© {{ now.Format "2006" }} <a href="https://github.com/{{ .Site.Params.github_owner }}/{{ .Site.Params.github_repo }}" target="_blank">{{ .Site.Title }}</a></p>
-          </footer>
-          EOF
-
-          # Create taxonomy.html
-          cat > .github/hugo-templates/layouts/_default/taxonomy.html << 'EOF'
-          {{ define "main" }}
-            <h1>{{ .Title }}</h1>
-            <ul>
-              {{ range .Pages }}
-                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-              {{ end }}
-            </ul>
-          {{ end }}
-          EOF
-
-          # Create term.html
-          cat > .github/hugo-templates/layouts/_default/term.html << 'EOF'
-          {{ define "main" }}
-            <h1>{{ .Title }}</h1>
-            <ul>
-              {{ range .Pages }}
-                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-              {{ end }}
-            </ul>
-          {{ end }}
-          EOF
-
-          # Create render-link.html
-          cat > .github/hugo-templates/layouts/_markup/render-link.html << 'EOF'
-          <a href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>
-          EOF
-
-          # Create style.css
-          cat > .github/hugo-templates/css/style.css << 'EOF'
-          body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-          }
-          a {
-            color: #0366d6;
-            text-decoration: none;
-          }
-          a:hover {
-            text-decoration: underline;
-          }
-          header, footer {
-            margin: 2rem 0;
-          }
-          EOF
-
-      - name: Run Hugo setup script
-        run: |
-          chmod +x .github/scripts/setup-hugo-local.sh
-          .github/scripts/setup-hugo-local.sh --base-url "${{ steps.pages.outputs.base_url }}/"
+          # Копируем другие markdown файлы
+          for file in *.md; do
+            if [ "$file" != "README.md" ] && [ -f "$file" ]; then
+              filename=$(basename -- "$file")
+              name="${filename%.*}"
+              cp "$file" "content/${name}.md"
+            fi
+          done
 
       - name: Build with Hugo
-        run: |
-          cd .github/hugo-site
-          hugo --gc --minify
+        run: hugo --gc --minify
 
       - name: Copy CNAME file
         run: |
           if [ -f "CNAME" ]; then
-            cp CNAME .github/hugo-site/public/
+            cp CNAME public/
           fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .github/hugo-site/public
+          path: ./public
 
   # Deployment job
   deploy:
