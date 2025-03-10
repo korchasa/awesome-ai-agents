@@ -29,16 +29,6 @@ on:
         required: false
         default: '.github/jekyll-templates'
         type: string
-      theme:
-        description: 'Jekyll theme to use (e.g. jekyll-theme-minimal, jekyll-theme-cayman)'
-        required: false
-        default: 'jekyll-theme-minimal'
-        type: string
-      remote_theme:
-        description: 'Remote theme to use (e.g. pages-themes/minimal, mmistakes/minimal-mistakes)'
-        required: false
-        default: ''
-        type: string
       menu_items:
         description: 'Menu items in JSON format (e.g. [{"name":"Home","url":"/"},{"name":"About","url":"/about"}])'
         required: false
@@ -72,8 +62,6 @@ jobs:
       SITE_TITLE: ${{ github.event.inputs.site_title || 'Awesome AI Agents' }}
       SITE_DESCRIPTION: ${{ github.event.inputs.site_description || 'A curated list of awesome AI agents and tools' }}
       TEMPLATE_PATH: ${{ github.event.inputs.template_path || '.github/jekyll-templates' }}
-      THEME: ${{ github.event.inputs.theme || 'jekyll-theme-minimal' }}
-      REMOTE_THEME: ${{ github.event.inputs.remote_theme || '' }}
       MENU_ITEMS: ${{ github.event.inputs.menu_items || '[{"name":"Home","url":"/"},{"name":"GitHub","url":"https://github.com/OWNER/REPO"}]' }}
       DEFAULT_TEMPLATE_REPO: "korchasa/awesome-ai-agents"
     steps:
@@ -145,16 +133,6 @@ jobs:
           url: "${{ steps.pages.outputs.origin }}"
           EOF
 
-          # Добавляем тему, если указана
-          if [ -n "${{ env.THEME }}" ] && [ "${{ env.REMOTE_THEME }}" = "" ]; then
-            echo "theme: ${{ env.THEME }}" >> _config.yml
-          fi
-
-          # Добавляем удаленную тему, если указана
-          if [ -n "${{ env.REMOTE_THEME }}" ]; then
-            echo "remote_theme: ${{ env.REMOTE_THEME }}" >> _config.yml
-          fi
-
           # Добавляем настройки Jekyll
           cat >> _config.yml << EOF
 
@@ -181,11 +159,6 @@ jobs:
           gem "github-pages", group: :jekyll_plugins
           gem "webrick", "~> 1.7"
           EOF
-
-          # Добавляем тему в Gemfile, если указана
-          if [ -n "${{ env.THEME }}" ] && [ "${{ env.REMOTE_THEME }}" = "" ]; then
-            echo "gem \"${{ env.THEME }}\"" >> Gemfile
-          fi
 
       # Подготавливаем Jekyll сайт с пользовательскими шаблонами (если есть)
       - name: Prepare custom templates
