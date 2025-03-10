@@ -1,0 +1,7 @@
+<nav class="main-nav">
+  <ul>
+    {% for item in site.data.menu %}
+      <li><a href="{{ item.url }}" {% if item.url contains "http" %}target="_blank"{% endif %}>{{ item.name }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

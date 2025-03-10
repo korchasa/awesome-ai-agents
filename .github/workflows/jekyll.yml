@@ -1,0 +1,336 @@
+name: Deploy Jekyll site to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches:
+      - feature/jekyll
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      site_title:
+        description: 'Site title'
+        required: false
+        default: 'Awesome AI Agents'
+        type: string
+      site_description:
+        description: 'Site description'
+        required: false
+        default: 'A curated list of awesome AI agents and tools'
+        type: string
+      jekyll_version:
+        description: 'Jekyll version'
+        required: false
+        default: '4.3.2'
+        type: string
+      menu_items:
+        description: 'Menu items in JSON format (e.g. [{"name":"Home","url":"/"},{"name":"About","url":"/about"}])'
+        required: false
+        default: '[{"name":"Home","url":"/"},{"name":"GitHub","url":"https://github.com/OWNER/REPO"}]'
+        type: string
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # Use inputs from workflow_dispatch or default values
+      JEKYLL_VERSION: ${{ github.event.inputs.jekyll_version || '4.3.2' }}
+      SITE_TITLE: ${{ github.event.inputs.site_title || 'Awesome AI Agents' }}
+      SITE_DESCRIPTION: ${{ github.event.inputs.site_description || 'A curated list of awesome AI agents and tools' }}
+      MENU_ITEMS: ${{ github.event.inputs.menu_items || '[{"name":"Home","url":"/"},{"name":"GitHub","url":"https://github.com/OWNER/REPO"}]' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
+      # Создаем данные для меню
+      - name: Create menu data
+        run: |
+          # Создаем директорию для данных
+          mkdir -p _data
+
+          # Создаем данные для меню
+          echo '${{ env.MENU_ITEMS }}' > _data/menu.json
+
+          # Создаем меню в формате для темы klise
+          echo "menus:" > _data/menus.yml
+          cat _data/menu.json | jq -r '.[] | "  - title: " + .name + "\n    url: " + .url + "\n    external: " + (if (.url | startswith("http")) then "true" else "false" end)' >> _data/menus.yml
+
+          # Заменяем OWNER/REPO в пунктах меню на реальные значения
+          sed -i "s|https://github.com/OWNER/REPO|https://github.com/$(echo $GITHUB_REPOSITORY)|g" _data/menus.yml
+
+      # Создаем конфигурацию Jekyll
+      - name: Create Jekyll config
+        run: |
+          # Создаем _config.yml
+          cat > _config.yml << EOF
+          title: "${{ env.SITE_TITLE }}"
+          description: "${{ env.SITE_DESCRIPTION }}"
+          github_owner: "$(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)"
+          github_repo: "$(echo $GITHUB_REPOSITORY | cut -d '/' -f 2)"
+          baseurl: "${{ steps.pages.outputs.base_path }}"
+          url: "${{ steps.pages.outputs.origin }}"
+
+          # Тема klise
+          remote_theme: piharpi/jekyll-klise
+
+          # Theme klise settings
+          mode: light
+          author:
+            name: ${{ env.SITE_TITLE }}
+            bio: ${{ env.SITE_DESCRIPTION }}
+            username: $(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)
+            github: $(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)
+            email: ""
+            avatar: /assets/img/avatar.jpg
+
+          # URL settings
+          permalink: /:title/
+
+          # Collection setting
+          collections:
+            posts:
+              output: true
+
+          # Markdown settings
+          markdown: kramdown
+          highlighter: rouge
+          kramdown:
+            syntax_highlighter: rouge
+
+          # Default front matter
+          defaults:
+            - scope:
+                path: ""
+              values:
+                layout: post
+                comments: false
+
+          # Jekyll Compose default front matter
+          jekyll_compose:
+            post_default_front_matter:
+              modified:
+              tags: []
+              description:
+            draft_default_front_matter:
+              modified:
+              tags: []
+              description:
+
+          # Build settings
+          sass:
+            style: compressed
+
+          include:
+            - _redirects
+            - .htaccess
+
+          # Plugins
+          plugins:
+            - jekyll-feed
+            - jekyll-sitemap
+            - jekyll-postfiles
+
+          # Exclude files from processing
+          exclude:
+            - Gemfile
+            - Gemfile.lock
+            - node_modules
+            - vendor
+            - .github
+          EOF
+
+          # Создаем Gemfile
+          cat > Gemfile << EOF
+          source "https://rubygems.org"
+
+          gem "jekyll", "~> ${{ env.JEKYLL_VERSION }}"
+          gem "github-pages", group: :jekyll_plugins
+          gem "webrick", "~> 1.7"
+
+          # Plugins
+          group :jekyll_plugins do
+            gem "jekyll-feed", "~> 0.13"
+            gem "jekyll-sitemap", "~> 1.4"
+            gem "jekyll-postfiles", "~> 3.1"
+          end
+          EOF
+
+      # Создаем необходимые директории и файлы для темы klise
+      - name: Setup klise theme
+        run: |
+          # Создаем директории
+          mkdir -p _posts _layouts _includes assets/img
+
+          # Создаем пустой аватар
+          convert -size 200x200 xc:lightgray -fill white -gravity center -font Arial -pointsize 72 -annotate 0 "AI" assets/img/avatar.jpg || echo "::warning::ImageMagick not available, using placeholder avatar"
+
+          # Если ImageMagick не доступен, создаем пустой файл
+          if [ ! -f "assets/img/avatar.jpg" ]; then
+            mkdir -p assets/img
+            touch assets/img/avatar.jpg
+          fi
+
+          # Создаем about.md
+          cat > about.md << EOF
+          ---
+          title: About
+          permalink: /about/
+          layout: page
+          excerpt: About page for ${{ env.SITE_TITLE }}
+          comments: false
+          ---
+
+          ${{ env.SITE_DESCRIPTION }}
+
+          **Contact me**
+
+          - [GitHub](https://github.com/$(echo $GITHUB_REPOSITORY))
+          EOF
+
+          # Создаем archive.html
+          cat > archive.html << EOF
+          ---
+          title: Archive
+          permalink: /archive/
+          layout: page
+          excerpt: All posts.
+          comments: false
+          ---
+
+          <div class="search-article">
+            <label for="search-input" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(128,128,128,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </label>
+            <input type="search" id="search-input" placeholder="Find some articles here" aria-label="Search">
+          </div>
+
+          <ul class="post-list">
+            {%- for post in site.posts -%}
+            <li class="post-item">
+              <span class="post-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
+              <a class="post-item-title" href="{{ post.url }}">{{ post.title | escape }}</a>
+            </li>
+            {%- endfor -%}
+          </ul>
+          EOF
+
+          # Создаем tags.html
+          cat > tags.html << EOF
+          ---
+          title: Tags
+          permalink: /tags/
+          layout: page
+          excerpt: All post tags.
+          ---
+
+          {% for tag in site.tags %}
+          <div class="tag-item">
+            <h4 class="tag-name" id="{{ tag[0] }}">{{ tag[0] }}</h4>
+            {% for post in tag[1] %}
+            <article class="tag-post">
+              <a href="{{ post.url }}">{{ post.title }}</a>
+              <span class="tag-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+            </article>
+            {% endfor %}
+          </div>
+          {% endfor %}
+          EOF
+
+          # Создаем 404.md
+          cat > 404.md << EOF
+          ---
+          title: Lost from journey
+          layout: 404
+          permalink: /404.html
+          ---
+
+          Looks like you're lost. Let's go <a href="/">home</a>!
+          EOF
+
+      # Копируем контент
+      - name: Copy content
+        run: |
+          # Копируем README.md как главную страницу
+          if [ -f "README.md" ]; then
+            cp README.md index.md
+            # Добавляем front matter
+            sed -i '1i---\ntitle: Home\nlayout: home\nexcerpt: Home page\n---\n' index.md
+          fi
+
+          # Копируем другие markdown файлы
+          for file in *.md; do
+            if [ "$file" != "README.md" ] && [ "$file" != "index.md" ] && [ "$file" != "about.md" ] && [ "$file" != "404.md" ] && [ -f "$file" ]; then
+              # Пропускаем файлы, которые уже созданы для темы klise
+              if [ "$file" = "archive.html" ] || [ "$file" = "tags.html" ]; then
+                continue
+              fi
+
+              filename=$(basename -- "$file")
+              name="${filename%.*}"
+              cp "$file" "${name}.md"
+              # Добавляем front matter
+              sed -i '1i---\ntitle: '"$name"'\nlayout: page\nexcerpt: '"$name"' page\n---\n' "${name}.md"
+            fi
+          done
+
+      # Устанавливаем зависимости и собираем сайт
+      - name: Build with Jekyll
+        run: |
+          bundle install
+          bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Copy CNAME file
+        run: |
+          if [ -f "CNAME" ]; then
+            cp CNAME _site/
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
