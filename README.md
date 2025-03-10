@@ -1,6 +1,6 @@
 # Awesome AI Agents
 
-> **Note:** This repository contains an *automatically compiled* list of frameworks, tools, and resources related to AI agents, LLMs, and autonomous systems.
+> **Note:** This repository contains an automatically compiled list of frameworks, tools, and resources related to AI agents, LLMs, and autonomous systems.
 
 This curated list focuses on tools and frameworks for building AI agents, including:
 - Multi-agent systems and autonomous frameworks
@@ -12,46 +12,88 @@ The projects are automatically categorized and regularly updated. Each entry inc
 
 Pull requests with additional tools and projects are welcome!
 
+
+Table of Contents:
 - [AI Agent Frameworks & SDKs](#ai-agent-frameworks-&-sdks) 
     - [Multi-Agent Collaboration Systems](#multi-agent-collaboration-systems) (58)
+
     - [Orchestration Frameworks](#orchestration-frameworks) (7)
+
     - [Cognitive Architecture Frameworks](#cognitive-architecture-frameworks) (3)
+
+
 - [Autonomous Research & Content Generation](#autonomous-research-&-content-generation) (14)
+
 - [Agent Integration & Deployment Tools](#agent-integration-&-deployment-tools) (59)
+
 - [Multimodal AI & Vision Agents](#multimodal-ai-&-vision-agents) 
     - [Video Processing Agents](#video-processing-agents) (3)
+
     - [AR/VR/XR Agents](#ar/vr/xr-agents) (1)
+
+
 - [Task Automation & Workflow Orchestration](#task-automation-&-workflow-orchestration) (17)
+
 - [Developer & Coding Assistants](#developer-&-coding-assistants) 
     - [Code Generation & Refactoring](#code-generation-&-refactoring) (7)
+
+
 - [GUI & Computer Control AI Agents](#gui-&-computer-control-ai-agents) 
     - [Desktop Automation](#desktop-automation) (1)
+
     - [Browser & Web Automation](#browser-&-web-automation) (1)
+
+
 - [Data Processing & ETL Agents](#data-processing-&-etl-agents) (3)
+
 - [Domain-Specific AI Agents](#domain-specific-ai-agents) 
     - [Medical & Healthcare](#medical-&-healthcare) (1)
+
     - [Financial & Trading Systems](#financial-&-trading-systems) (2)
+
     - [Educational & Learning Agents](#educational-&-learning-agents) (2)
+
+
 - [Gaming & Simulation Agents](#gaming-&-simulation-agents) (6)
+
 - [Low-Code/No-Code Platforms](#low-code/no-code-platforms) (17)
+
 - [Agent Communication & Protocols](#agent-communication-&-protocols) (14)
+
 - [Simulation & Benchmarking Environments](#simulation-&-benchmarking-environments) (12)
+
 - [Web Automation and UI Interaction](#web-automation-and-ui-interaction) 
     - [Browser Automation](#browser-automation) (12)
+
     - [UI Interaction](#ui-interaction) (8)
+
+
 - [Personal Assistants & Conversational Agents](#personal-assistants-&-conversational-agents) 
     - [Chatbots](#chatbots) (12)
+
+
 - [Audio & Voice Assistants](#audio-&-voice-assistants) (3)
+
 - [Corporate and Analytical Applications](#corporate-and-analytical-applications) 
     - [RAG and Business Analytics](#rag-and-business-analytics) (7)
+
     - [Data Integration and Specialized Solutions](#data-integration-and-specialized-solutions) (4)
+
+
 - [Developer Tools and Automation](#developer-tools-and-automation) 
     - [Code Automation and Testing](#code-automation-and-testing) (15)
+
     - [Integration and Extensions](#integration-and-extensions) (6)
+
+
 - [Educational and Research Resources](#educational-and-research-resources) 
     - [Courses and Tutorials](#courses-and-tutorials) (12)
+
     - [Research Lists and Survey Projects](#research-lists-and-survey-projects) (22)
+
     - [Research Platforms & Simulators](#research-platforms-&-simulators) (1)
+
+
 
 
 
@@ -119,6 +161,7 @@ Pull requests with additional tools and projects are welcome!
 - [wjayesh/mahilo](https://github.com/wjayesh/mahilo) (★292 Python) - Mahilo is a multi-agent framework that enables developers to create and manage human-interactive AI agents that communicate and collaborate in real-time.
 - [xlang-ai/OpenAgents](https://github.com/xlang-ai/OpenAgents) (★4160 Python) - OpenAgents is an open-source platform that facilitates the use of multiple language agents for automating tasks through a chat-based interface.
 
+
 ### Orchestration Frameworks
 
 - [Pravko-Solutions/FlashLearn](https://github.com/Pravko-Solutions/FlashLearn) (★575 Python) - FlashLearn is a Python framework for integrating LLM agents into ETL pipelines using JSON-defined tasks.
@@ -129,11 +172,14 @@ Pull requests with additional tools and projects are welcome!
 - [lion-agi/lionagi](https://github.com/lion-agi/lionagi) (★323 Python) - LionAGI is a powerful framework designed for managing multi-step AI operations with integrated model interactions and tool capabilities.
 - [om-ai-lab/OmAgent](https://github.com/om-ai-lab/OmAgent) (★2187 Python) - OmAgent is a Python library that simplifies the construction of multimodal language agents through an easy-to-use interface.
 
+
 ### Cognitive Architecture Frameworks
 
 - [USC-GVL/Agent-Driver](https://github.com/USC-GVL/Agent-Driver) (★254 Python) - Agent-Driver is an advanced autonomous driving framework utilizing large language models to enhance motion planning with human-like reasoning.
 - [aiwaves-cn/agents](https://github.com/aiwaves-cn/agents) (★5513 Python) - Agents 2.0 is an open-source framework designed for creating self-evolving autonomous language agents through symbolic learning.
 - [showlab/ShowUI](https://github.com/showlab/ShowUI) (★1067 Jupyter Notebook) - ShowUI is an open-source, vision-language-action model designed to create intelligent agents for graphical user interfaces.
+
+
 
 ## Autonomous Research & Content Generation
 
@@ -151,6 +197,7 @@ Pull requests with additional tools and projects are welcome!
 - [microsoft/RD-Agent](https://github.com/microsoft/RD-Agent) (★1767 Python) - RD-Agent is an AI-driven framework that automates and streamlines industrial research and development processes.
 - [myshell-ai/AIlice](https://github.com/myshell-ai/AIlice) (★1026 Python) - AIlice is an autonomous AI agent that leverages advanced LLM technologies to perform research, coding, and system management tasks.
 - [pHaeusler/micro-agent](https://github.com/pHaeusler/micro-agent) (★443 Python) - Micro Agent is a Python framework that autonomously writes and tests software using language models like OpenAI’s GPT-4, acting as a minimal AI software engineer.
+
 
 ## Agent Integration & Deployment Tools
 
@@ -214,6 +261,7 @@ Pull requests with additional tools and projects are welcome!
 - [yym68686/ChatGPT-Telegram-Bot](https://github.com/yym68686/ChatGPT-Telegram-Bot) (★957 Python) - TeleChat is an AI-powered Telegram bot that utilizes multiple large language model APIs to facilitate dynamic and interactive conversational experiences.
 - [zorazrw/agent-workflow-memory](https://github.com/zorazrw/agent-workflow-memory) (★249 Python) - Agent Workflow Memory is a framework that enhances AI agents by enabling them to create and use workflows with integrated memory in both offline and online environments.
 
+
 ## Multimodal AI & Vision Agents
 
 
@@ -223,9 +271,12 @@ Pull requests with additional tools and projects are welcome!
 - [google-deepmind/acme](https://github.com/google-deepmind/acme) (★3605 Python) - Acme is a DeepMind research framework designed for developing scalable and efficient reinforcement learning agents.
 - [video-db/Director](https://github.com/video-db/Director) (★788 Python) - Director is an AI-powered video agent framework that simplifies complex video tasks through natural language commands and an interactive chat interface.
 
+
 ### AR/VR/XR Agents
 
 - [InternLM/Agent-FLAN](https://github.com/InternLM/Agent-FLAN) (★340 ) - Agent-FLAN is a project aimed at fine-tuning large language models to enhance their capabilities as agents through innovative methodology and data.
+
+
 
 ## Task Automation & Workflow Orchestration
 
@@ -247,6 +298,7 @@ Pull requests with additional tools and projects are welcome!
 - [lmnr-ai/flow](https://github.com/lmnr-ai/flow) (★912 Python) - Flow is a lightweight Python-based task engine designed for building stateful, dynamic AI agents that execute tasks concurrently with advanced scheduling, state management, and tracing capabilities.
 - [microsoft/UFO](https://github.com/microsoft/UFO) (★6597 Python) - UFO is a Microsoft-developed multi-agent framework that automates interactions across Windows applications, enhancing user experiences with AI-driven solutions.
 
+
 ## Developer & Coding Assistants
 
 
@@ -260,6 +312,8 @@ Pull requests with additional tools and projects are welcome!
 - [melih-unsal/DemoGPT](https://github.com/melih-unsal/DemoGPT) (★1782 Python) - DemoGPT is an open-source toolkit that automates the generation of interactive applications using Large Language Models.
 - [pgalko/BambooAI](https://github.com/pgalko/BambooAI) (★527 Python) - BambooAI is an open-source library that facilitates data analysis through natural language conversations, leveraging Large Language Models to enhance accessibility and usability.
 
+
+
 ## GUI & Computer Control AI Agents
 
 
@@ -267,15 +321,19 @@ Pull requests with additional tools and projects are welcome!
 
 - [niuzaisheng/ScreenAgent](https://github.com/niuzaisheng/ScreenAgent) (★410 Python) - ScreenAgent is an AI-driven agent that automates desktop interactions using a visual language model through a structured planning-execution-reflection process.
 
+
 ### Browser & Web Automation
 
 - [tinyfish-io/agentql](https://github.com/tinyfish-io/agentql) (★591 Python) - AgentQL is a comprehensive suite of tools that connects AI agents to the web for efficient data extraction and workflow automation.
+
+
 
 ## Data Processing & ETL Agents
 
 - [HumanSignal/Adala](https://github.com/HumanSignal/Adala) (★1082 Python) - Adala is a powerful Python framework for developing autonomous agents that specialize in data labeling and processing tasks.
 - [PySpur-Dev/pyspur](https://github.com/PySpur-Dev/pyspur) (★3384 TypeScript) - PySpur is an intuitive Python toolkit designed for AI engineers to build, test, and deploy AI agent workflows with advanced functionalities.
 - [Wilson-ZheLin/Streamline-Analyst](https://github.com/Wilson-ZheLin/Streamline-Analyst) (★375 Python) - Streamline Analyst is an AI agent that automates data analysis workflows using large language models.
+
 
 ## Domain-Specific AI Agents
 
@@ -284,15 +342,19 @@ Pull requests with additional tools and projects are welcome!
 
 - [bowang-lab/MedRAX](https://github.com/bowang-lab/MedRAX) (★518 Python) - MedRAX is an advanced AI agent that enhances medical reasoning and interpretation of chest X-rays through multimodal large language models.
 
+
 ### Financial & Trading Systems
 
 - [BAAI-Agents/Cradle](https://github.com/BAAI-Agents/Cradle) (★2016 Python) - Cradle is a Python framework that empowers AI agents to autonomously perform complex computer control tasks across various environments.
 - [pskrunner14/trading-bot](https://github.com/pskrunner14/trading-bot) (★1024 Jupyter Notebook) - This project implements a stock trading bot that utilizes deep reinforcement learning techniques, particularly Deep Q-learning, to automate trading decisions.
 
+
 ### Educational & Learning Agents
 
 - [joshpocock/Stride-AI-Agents](https://github.com/joshpocock/Stride-AI-Agents) (★293 Python) - Stride AI Agents is an open-source project designed to empower developers and businesses to build autonomous AI agents for various applications.
 - [neural-maze/ai-companion](https://github.com/neural-maze/ai-companion) (★485 Python) - Ava is an AI-powered WhatsApp agent designed to facilitate realistic conversations through voice, image, and text interactions as part of an educational initiative.
+
+
 
 ## Gaming & Simulation Agents
 
@@ -302,6 +364,7 @@ Pull requests with additional tools and projects are welcome!
 - [hsahovic/poke-env](https://github.com/hsahovic/poke-env) (★311 Python) - poke-env is a Python interface designed for the creation and training of reinforcement learning agents to compete on Pokémon Showdown.
 - [litanlitudan/skyagi](https://github.com/litanlitudan/skyagi) (★774 TypeScript) - SkyAGI is a Python package that utilizes generative agents to simulate human-like behaviors for immersive role-playing game experiences.
 - [zju-vipa/Odyssey](https://github.com/zju-vipa/Odyssey) (★289 Python) - Odyssey is an innovative framework designed to enhance Minecraft agents with a robust skill library and an advanced LLaMA model to successfully navigate and explore open-world environments.
+
 
 ## Low-Code/No-Code Platforms
 
@@ -323,6 +386,7 @@ Pull requests with additional tools and projects are welcome!
 - [strnad/CrewAI-Studio](https://github.com/strnad/CrewAI-Studio) (★673 Python) - CrewAI Studio is a no-code platform that simplifies the management and deployment of CrewAI agents across multiple platforms.
 - [trypromptly/LLMStack](https://github.com/trypromptly/LLMStack) (★1871 Python) - LLMStack is a no-code platform for building and deploying generative AI agents, chatbots, and complex applications through seamless LLM chaining and data integration.
 
+
 ## Agent Communication & Protocols
 
 - [Azure-Samples/miyagi](https://github.com/Azure-Samples/miyagi) (★736 Jupyter Notebook) - Miyagi is a multi-agent orchestration showcase that demonstrates Microsoft's Copilot stack for building AI-enhanced enterprise applications.
@@ -340,6 +404,7 @@ Pull requests with additional tools and projects are welcome!
 - [satellitecomponent/Neurite](https://github.com/satellitecomponent/Neurite) (★1409 JavaScript) - Neurite is a fractal-based mind-mapping tool that leverages AI agents for dynamic knowledge management and visualization.
 - [transitive-bullshit/agentic](https://github.com/transitive-bullshit/agentic) (★17081 TypeScript) - A TypeScript standard library that enables the creation and integration of AI agents with multiple major AI SDKs.
 
+
 ## Simulation & Benchmarking Environments
 
 - [OSU-NLP-Group/TravelPlanner](https://github.com/OSU-NLP-Group/TravelPlanner) (★322 Python) - TravelPlanner is a benchmark designed to evaluate language agents in executing complex planning tasks under real-world constraints.
@@ -354,6 +419,7 @@ Pull requests with additional tools and projects are welcome!
 - [web-arena-x/webarena](https://github.com/web-arena-x/webarena) (★902 Python) - WebArena is a standalone web environment designed for building and evaluating autonomous agents in realistic web settings.
 - [xlang-ai/OSWorld](https://github.com/xlang-ai/OSWorld) (★1660 Python) - OSWorld is a benchmarking tool that evaluates multimodal agents in real computer environments.
 - [yifanlu0227/ChatSim](https://github.com/yifanlu0227/ChatSim) (★368 Python) - ChatSim is an editable scene simulation platform for autonomous driving that leverages LLM-agent collaboration to enhance simulation capabilities.
+
 
 ## Web Automation and UI Interaction
 
@@ -373,6 +439,7 @@ Pull requests with additional tools and projects are welcome!
 - [vdutts7/gpt4V-scraper](https://github.com/vdutts7/gpt4V-scraper) (★278 JavaScript) - GPT-4V Web Agent is an AI-driven tool that automates browser tasks by scraping websites, taking screenshots, and interacting through real-time chat.
 - [web-arena-x/visualwebarena](https://github.com/web-arena-x/visualwebarena) (★307 Python) - VisualWebArena is a benchmark for evaluating multimodal autonomous agents on complex web-based visual tasks.
 
+
 ### UI Interaction
 
 - [AIDC-AI/ComfyUI-Copilot](https://github.com/AIDC-AI/ComfyUI-Copilot) (★777 TypeScript) - ComfyUI-Copilot is an AI-powered assistant node that enhances ComfyUI workflows with intelligent node recommendations and interactive debugging support.
@@ -383,6 +450,8 @@ Pull requests with additional tools and projects are welcome!
 - [agentlabs-dev/agentlabs](https://github.com/agentlabs-dev/agentlabs) (★460 TypeScript) - An open-source universal frontend for deploying and managing AI Agents with realtime streaming capabilities.
 - [kyegomez/awesome-multi-agent-papers](https://github.com/kyegomez/awesome-multi-agent-papers) (★414 TeX) - This project compiles a curated list of influential papers on multi-agent systems and AI agents.
 - [langchain-ai/langgraph-studio](https://github.com/langchain-ai/langgraph-studio) (★2559 ) - LangGraph Studio is a macOS desktop IDE designed for visualizing, interacting with, and debugging LangGraph agent applications.
+
+
 
 ## Personal Assistants & Conversational Agents
 
@@ -402,11 +471,14 @@ Pull requests with additional tools and projects are welcome!
 - [superagent-ai/superagent](https://github.com/superagent-ai/superagent) (★5652 TypeScript) - Superagent is an open-source AI framework that enables developers to build advanced AI assistants and applications effortlessly.
 - [victordibia/autogen-ui](https://github.com/victordibia/autogen-ui) (★871 TypeScript) - AutoGen UI is a web UI template that allows developers to easily build chat interfaces using the AutoGen AgentChat API.
 
+
+
 ## Audio & Voice Assistants
 
 - [Olney1/ChatGPT-OpenAI-Smart-Speaker](https://github.com/Olney1/ChatGPT-OpenAI-Smart-Speaker) (★272 Python) - The ChatGPT-OpenAI-Smart-Speaker is an AI-powered smart speaker designed for interactive voice and vision-driven conversations using ChatGPT and OpenAI technologies.
 - [TEN-framework/ten_framework](https://github.com/TEN-framework/ten_framework) (★582 C) - TEN-framework is a high-performance voice agent framework designed for creating real-time multimodal conversational AI experiences.
 - [livekit/agents](https://github.com/livekit/agents) (★5254 Python) - livekit/agents is an open-source framework for building real-time multimodal AI applications that integrate voice, video, and advanced media communication.
+
 
 ## Corporate and Analytical Applications
 
@@ -421,12 +493,15 @@ Pull requests with additional tools and projects are welcome!
 - [mongodb-developer/GenAI-Showcase](https://github.com/mongodb-developer/GenAI-Showcase) (★1867 Jupyter Notebook) - A comprehensive repository offering examples and resources for integrating MongoDB with generative AI applications, with a focus on RAG pipelines and AI agents.
 - [video-db/StreamRAG](https://github.com/video-db/StreamRAG) (★461 Python) - StreamRAG is a GPT-powered video retrieval and streaming agent that allows developers to create searchable video libraries with summarized responses.
 
+
 ### Data Integration and Specialized Solutions
 
 - [Canner/vulcan-sql](https://github.com/Canner/vulcan-sql) (★662 TypeScript) - VulcanSQL is an analytical data API framework that simplifies the creation and integration of secure APIs for AI agents and data apps.
 - [Integuru-AI/Integuru](https://github.com/Integuru-AI/Integuru) (★4224 Python) - An AI agent that reverse-engineers internal APIs to automatically generate integration code for various platforms.
 - [airweave-ai/airweave](https://github.com/airweave-ai/airweave) (★308 Python) - Airweave is an open-source tool that syncs various app data to make it searchable for your agent.
 - [topoteretes/cognee](https://github.com/topoteretes/cognee) (★1377 Jupyter Notebook) - Cognee is a scalable and reliable memory layer for AI applications and agents that integrates data through modular ECL pipelines to create comprehensive knowledge graphs.
+
+
 
 ## Developer Tools and Automation
 
@@ -449,6 +524,7 @@ Pull requests with additional tools and projects are welcome!
 - [test-zeus-ai/testzeus-hercules](https://github.com/test-zeus-ai/testzeus-hercules) (★425 Python) - Hercules is an open-source testing agent that automates end-to-end testing for web applications using natural language Gherkin steps.
 - [tninja/aider.el](https://github.com/tninja/aider.el) (★378 Emacs Lisp) - aider.el is an Emacs plugin that integrates the Aider AI pair programming tool into Emacs to streamline development workflows.
 
+
 ### Integration and Extensions
 
 - [AgentOps-AI/agentops](https://github.com/AgentOps-AI/agentops) (★2946 Python) - AgentOps is a Python SDK that provides comprehensive observability and management tools for AI agents.
@@ -457,6 +533,8 @@ Pull requests with additional tools and projects are welcome!
 - [frdel/agent-zero](https://github.com/frdel/agent-zero) (★6207 Python) - Agent Zero is a versatile AI framework designed for autonomous multi-agent cooperation and customizable task execution.
 - [goat-sdk/goat](https://github.com/goat-sdk/goat) (★482 TypeScript) - GOAT is an open-source framework that connects AI agents to blockchain-based applications with a modular, lightweight toolkit.
 - [liveblocks/liveblocks](https://github.com/liveblocks/liveblocks) (★3804 TypeScript) - Liveblocks is a platform offering customizable pre-built components to seamlessly add collaborative and AI-ready features to applications.
+
+
 
 ## Educational and Research Resources
 
@@ -475,6 +553,7 @@ Pull requests with additional tools and projects are welcome!
 - [microsoft/ai-agents-for-beginners](https://github.com/microsoft/ai-agents-for-beginners) (★4422 Jupyter Notebook) - A comprehensive beginner course teaching the fundamentals of building AI agents.
 - [towardsai/ragbook-notebooks](https://github.com/towardsai/ragbook-notebooks) (★441 Jupyter Notebook) - A repository of Jupyter notebooks supporting a book on building LLMs for production, focused on agent-based applications and RAG techniques.
 - [v2rockets/Loyal-Elephie](https://github.com/v2rockets/Loyal-Elephie) (★304 Python) - Loyal Elephie is a memory-enabled AI companion that offers customizable and secure conversational experiences through its Next.js frontend and Python backend.
+
 
 ### Research Lists and Survey Projects
 
@@ -501,11 +580,14 @@ Pull requests with additional tools and projects are welcome!
 - [zchoi/Awesome-Embodied-Agent-with-LLMs](https://github.com/zchoi/Awesome-Embodied-Agent-with-LLMs) (★1190 ) - A curated list of research papers and resources on embodied AI and LLM-powered agents.
 - [zjunlp/LLMAgentPapers](https://github.com/zjunlp/LLMAgentPapers) (★2182 ) - A curated repository of essential research papers on large language model agents.
 
+
 ### Research Platforms & Simulators
 
 - [mishushakov/dialogflow-web-v2](https://github.com/mishushakov/dialogflow-web-v2) (★425 Vue) - Dialogflow for Web v2 is an unofficial lightweight integration for Dialogflow V2 that allows developers to create feature-rich conversational interfaces.
 
 
+
+
 ## License
 
-[<img src="http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg">](https://creativecommons.org/publicdomain/zero/1.0/)
+[<img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg">](https://creativecommons.org/publicdomain/zero/1.0/)
