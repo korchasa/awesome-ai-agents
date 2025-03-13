@@ -161,6 +161,7 @@ Table of Contents:
 - [vircadia/vircadia-native-core](https://github.com/vircadia/vircadia-native-core) (★534 C++) - Vircadia is an open-source metaverse ecosystem that supports immersive virtual worlds populated by human users and AI agents.
 - [wjayesh/mahilo](https://github.com/wjayesh/mahilo) (★297 Python) - Mahilo is a multi-agent framework that enables developers to create and manage human-interactive AI agents that communicate and collaborate in real-time.
 - [xlang-ai/OpenAgents](https://github.com/xlang-ai/OpenAgents) (★4162 Python) - OpenAgents is an open-source platform that facilitates the use of multiple language agents for automating tasks through a chat-based interface.
+- [upsonic/upsonic](https://github.com/upsonic/upsonic) (★6870 Python) - Upsonic is a reliable AI framework supporting MCP, offering trusted agent workflows with verification layers, validator agents, and output evaluation for real-world applications.
 
 
 ### Orchestration Frameworks
