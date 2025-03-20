@@ -138,7 +138,7 @@ Table of Contents:
 - [jbexta/AgentPilot](https://github.com/jbexta/AgentPilot) (★421 Python) - AgentPilot is an AI-driven workflow automation platform that facilitates the creation and management of complex multi-agent tasks and chats.
 - [kaiban-ai/KaibanJS](https://github.com/kaiban-ai/KaibanJS) (★1051 JavaScript) - KaibanJS is a JavaScript framework designed to manage multi-agent systems and orchestrate AI tasks using a Kanban-inspired workflow.
 - [langchain-ai/langgraphjs](https://github.com/langchain-ai/langgraphjs) (★1193 TypeScript) - LangGraph.js is a JavaScript framework that facilitates the creation and management of multi-agent systems using a graph-based architecture.
-- [langmanus/langmanus](https://github.com/langmanus/langmanus) (★1928 Python) - LangManus is a community-driven AI automation framework that integrates language models with specialized tools for various tasks.
+- [langmanus/langmanus](https://github.com/langmanus/langmanus) (★1932 Python) - LangManus is a community-driven AI automation framework that integrates language models with specialized tools for various tasks.
 - [langroid/langroid](https://github.com/langroid/langroid) (★3166 Python) - Langroid is a lightweight Python framework that enables the creation of collaborative multi-agent applications powered by LLMs.
 - [lastmile-ai/mcp-agent](https://github.com/lastmile-ai/mcp-agent) (★1523 Python) - mcp-agent is a lightweight Python framework that facilitates the creation of composable AI agents using the Model Context Protocol.
 - [ldclabs/anda](https://github.com/ldclabs/anda) (★292 Rust) - Anda is a Rust-based AI agent framework that integrates ICP blockchain and TEEs for secure and autonomous agent collaboration.
@@ -190,7 +190,7 @@ Table of Contents:
 
 - [AgentEra/Agently-Daily-News-Collector](https://github.com/AgentEra/Agently-Daily-News-Collector) (★495 Python) - Agently Daily News Collector automates the collection and organization of news articles using AI agents based on user-defined topics.
 - [FellouAI/eko](https://github.com/FellouAI/eko) (★2835 TypeScript) - Eko is a production-ready JavaScript framework that allows developers to create reliable agent workflows using natural language commands.
-- [HKUDS/AI-Researcher](https://github.com/HKUDS/AI-Researcher) (★1005 Python) - AI-Researcher is an open-sourced platform that fully automates the scientific discovery process using advanced LLM agents.
+- [HKUDS/AI-Researcher](https://github.com/HKUDS/AI-Researcher) (★1006 Python) - AI-Researcher is an open-sourced platform that fully automates the scientific discovery process using advanced LLM agents.
 - [HKUDS/Auto-Deep-Research](https://github.com/HKUDS/Auto-Deep-Research) (★792 Python) - Auto-Deep-Research is an open-source, fully automated personal AI assistant that serves as a cost-effective alternative to OpenAI's Deep Research.
 - [MLSysOps/MLE-agent](https://github.com/MLSysOps/MLE-agent) (★1246 Python) - MLE-Agent is an intelligent tool designed to automate essential AI engineering and research tasks for machine learning professionals.
 - [TIGER-AI-Lab/TheoremExplainAgent](https://github.com/TIGER-AI-Lab/TheoremExplainAgent) (★1111 Python) - TheoremExplainAgent is an AI system that uses the Manim library to create animated videos for visually explaining mathematical theorems.
@@ -261,10 +261,10 @@ Table of Contents:
 - [reworkd/AgentGPT](https://github.com/reworkd/AgentGPT) (★33454 TypeScript) - AgentGPT is a browser-based platform that allows users to assemble, configure, and deploy autonomous AI agents to achieve custom goals.
 - [run-llama/llama_deploy](https://github.com/run-llama/llama_deploy) (★1981 Python) - LlamaDeploy is an asynchronous Python framework that simplifies the deployment and scaling of AI agent-driven workflows into accessible services.
 - [sigoden/llm-functions](https://github.com/sigoden/llm-functions) (★452 Shell) - The sigoden/llm-functions project enables developers to create LLM tools and agents using Bash, JavaScript, and Python, facilitating easy integration and function calling.
-- [simular-ai/Agent-S](https://github.com/simular-ai/Agent-S) (★1312 Python) - Agent S is an open-source framework for creating intelligent GUI agents that facilitate human-like interactions with computers.
+- [simular-ai/Agent-S](https://github.com/simular-ai/Agent-S) (★1313 Python) - Agent S is an open-source framework for creating intelligent GUI agents that facilitate human-like interactions with computers.
 - [trustgraph-ai/trustgraph](https://github.com/trustgraph-ai/trustgraph) (★331 Python) - TrustGraph is an agentic orchestration platform that enables rapid deployment of reasoning AI agents through modular cognitive cores.
 - [trycua/computer](https://github.com/trycua/computer) (★2175 Python) - Cua is a tool for creating and running high-performance macOS and Linux virtual machines on Apple Silicon, featuring built-in support for AI agents.
-- [trycua/cua](https://github.com/trycua/cua) (★2509 Python) - Cua is a tool for creating and running high-performance macOS and Linux virtual machines on Apple Silicon, featuring built-in support for AI agents.
+- [trycua/cua](https://github.com/trycua/cua) (★2510 Python) - Cua is a tool for creating and running high-performance macOS and Linux virtual machines on Apple Silicon, featuring built-in support for AI agents.
 - [vespperhq/vespper](https://github.com/vespperhq/vespper) (★339 TypeScript) - Vespper is an AI-based on-call developer tool that automates incident diagnosis and resolution in real time.
 - [vintasoftware/django-ai-assistant](https://github.com/vintasoftware/django-ai-assistant) (★326 Python) - Django AI Assistant is a Django extension that enables the integration of AI assistants using LLMs and RAG to build intelligent applications.
 - [xataio/agent](https://github.com/xataio/agent) (★498 TypeScript) - Xata Agent is an open-source AI agent that monitors PostgreSQL databases, suggests improvements, and troubleshoots performance issues.
@@ -346,7 +346,7 @@ Table of Contents:
 ## Data Processing & ETL Agents
 
 - [HumanSignal/Adala](https://github.com/HumanSignal/Adala) (★1099 Python) - Adala is a powerful Python framework for developing autonomous agents that specialize in data labeling and processing tasks.
-- [PySpur-Dev/pyspur](https://github.com/PySpur-Dev/pyspur) (★3671 TypeScript) - PySpur is an intuitive Python toolkit designed for AI engineers to build, test, and deploy AI agent workflows with advanced functionalities.
+- [PySpur-Dev/pyspur](https://github.com/PySpur-Dev/pyspur) (★3672 TypeScript) - PySpur is an intuitive Python toolkit designed for AI engineers to build, test, and deploy AI agent workflows with advanced functionalities.
 - [Wilson-ZheLin/Streamline-Analyst](https://github.com/Wilson-ZheLin/Streamline-Analyst) (★383 Python) - Streamline Analyst is an AI agent that automates data analysis workflows using large language models.
 
 
@@ -395,7 +395,7 @@ Table of Contents:
 - [craftgen/craftgen](https://github.com/craftgen/craftgen) (★288 TypeScript) - Craftgen is an open-source no-code AI platform for building dynamic, graph-based workflows with customizable agent capabilities.
 - [jaemil/agentsflow](https://github.com/jaemil/agentsflow) (★307 TypeScript) - A drag-and-drop web interface for creating and running flows of autonomous autogen AI agents.
 - [jgravelle/AutoGroq](https://github.com/jgravelle/AutoGroq) (★1428 Python) - AutoGroq is an AI-powered tool that dynamically creates tailored teams of expert agents to enhance user interactions with AI assistants.
-- [langflow-ai/langflow](https://github.com/langflow-ai/langflow) (★52241 Python) - Langflow is a Python-based low-code builder for developing RAG and multi-agent AI applications.
+- [langflow-ai/langflow](https://github.com/langflow-ai/langflow) (★52242 Python) - Langflow is a Python-based low-code builder for developing RAG and multi-agent AI applications.
 - [langgenius/dify](https://github.com/langgenius/dify) (★84163 TypeScript) - Dify is an open-source platform that enables developers to create, deploy, and manage LLM-powered applications with integrated agentic workflows and robust tools.
 - [microsoft/autogen](https://github.com/microsoft/autogen) (★41845 Python) - AutoGen is a Python framework for developing autonomous multi-agent AI applications that operate independently or collaboratively.
 - [n8n-io/self-hosted-ai-starter-kit](https://github.com/n8n-io/self-hosted-ai-starter-kit) (★7474 ) - Self-hosted AI Starter Kit is an open-source Docker Compose template for creating secure, low-code local AI workflows with integrated AI agents.
@@ -419,7 +419,7 @@ Table of Contents:
 - [nasa-jpl/rosa](https://github.com/nasa-jpl/rosa) (★1037 Python) - ROSA is an AI-powered assistant by NASA JPL that enables natural language interactions with ROS robotics systems.
 - [robusta-dev/holmesgpt](https://github.com/robusta-dev/holmesgpt) (★740 Python) - HolmesGPT is an AI agent that automates alert investigations by analyzing observability data and integrating with various systems.
 - [satellitecomponent/Neurite](https://github.com/satellitecomponent/Neurite) (★1442 JavaScript) - Neurite is a fractal-based mind-mapping tool that leverages AI agents for dynamic knowledge management and visualization.
-- [sonnylazuardi/cursor-talk-to-figma-mcp](https://github.com/sonnylazuardi/cursor-talk-to-figma-mcp) (★971 JavaScript) - Cursor Talk to Figma MCP integrates Cursor AI with Figma, enabling programmatic design modifications through a Model Context Protocol.
+- [sonnylazuardi/cursor-talk-to-figma-mcp](https://github.com/sonnylazuardi/cursor-talk-to-figma-mcp) (★972 JavaScript) - Cursor Talk to Figma MCP integrates Cursor AI with Figma, enabling programmatic design modifications through a Model Context Protocol.
 - [transitive-bullshit/agentic](https://github.com/transitive-bullshit/agentic) (★17159 TypeScript) - A TypeScript standard library that enables the creation and integration of AI agents with multiple major AI SDKs.
 
 
@@ -524,7 +524,7 @@ Table of Contents:
 
 ### Code Automation and Testing
 
-- [All-Hands-AI/OpenHands](https://github.com/All-Hands-AI/OpenHands) (★50939 Python) - OpenHands is an AI-powered platform that leverages intelligent agents to streamline and automate software development.
+- [All-Hands-AI/OpenHands](https://github.com/All-Hands-AI/OpenHands) (★50940 Python) - OpenHands is an AI-powered platform that leverages intelligent agents to streamline and automate software development.
 - [BuilderIO/micro-agent](https://github.com/BuilderIO/micro-agent) (★3891 TypeScript) - Micro Agent is an AI agent that iteratively generates and refines code until all test cases pass.
 - [Grigorij-Dudnik/Clean-Coder-AI](https://github.com/Grigorij-Dudnik/Clean-Coder-AI) (★422 Python) - Clean Coder AI is an intelligent, agent-driven system that autonomously manages projects and writes code task by task.
 - [OpenAutoCoder/Agentless](https://github.com/OpenAutoCoder/Agentless) (★1577 Python) - Agentless is an automated tool that solves software development problems through a three-phase process of localization, repair, and patch validation.
