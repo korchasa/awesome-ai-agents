@@ -307,6 +307,7 @@ Table of Contents:
 - [kyegomez/swarms](https://github.com/kyegomez/swarms) (★4744 Python) - Swarms is a production-ready Python framework designed to orchestrate enterprise-grade multi-agent systems for complex workflows.
 - [lmnr-ai/flow](https://github.com/lmnr-ai/flow) (★914 Python) - Flow is a lightweight Python-based task engine designed for building stateful, dynamic AI agents that execute tasks concurrently with advanced scheduling, state management, and tracing capabilities.
 - [microsoft/UFO](https://github.com/microsoft/UFO) (★6632 Python) - UFO is a Microsoft-developed multi-agent framework that automates interactions across Windows applications, enhancing user experiences with AI-driven solutions.
+- [giselles-ai/giselle](https://github.com/giselles-ai/giselle) (★96 TypeScript) - Giselle is an agentic workflow builder that empowers you to create AI-driven solutions with ease.
 
 
 ## Developer & Coding Assistants
