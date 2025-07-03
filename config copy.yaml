@@ -1,0 +1,197 @@
+github:
+    queries:
+        - topic:agent stars:>200 archived:false
+        - topic:agents stars:>200 archived:false
+        - topic:ai-agent stars:>200 archived:false
+        - topic:ai-agents stars:>200 archived:false
+        - topic:llm-agent stars:>200 archived:false
+        - topic:llm-agents stars:>200 archived:false
+        - topic:autonomous-agents stars:>200 archived:false
+    owner: korchasa
+    repo: awesome-ai-agents
+    ignore_prompt: ""
+    pages:
+        - https://raw.githubusercontent.com/Jenqyang/Awesome-AI-Agents/refs/heads/main/README.md
+        - https://raw.githubusercontent.com/e2b-dev/awesome-ai-agents/refs/heads/main/README.md
+        - https://raw.githubusercontent.com/fr0gger/Awesome-GPT-Agents/refs/heads/main/README.md
+        - https://raw.githubusercontent.com/kaushikb11/awesome-llm-agents/refs/heads/main/README.md
+        - https://raw.githubusercontent.com/showlab/Awesome-GUI-Agent/refs/heads/main/README.md
+        - https://raw.githubusercontent.com/slavakurilyak/awesome-ai-agents/refs/heads/main/README.md
+content:
+    max_items: 500
+    root:
+        title: Root
+        prompt: ""
+        categories:
+            - title: AI Agent Frameworks & SDKs
+              prompt: ""
+              categories:
+                - title: Multi-Agent Collaboration Systems
+                  prompt: ""
+                  categories: []
+                - title: Orchestration Frameworks
+                  prompt: ""
+                  categories: []
+                - title: Cognitive Architecture Frameworks
+                  prompt: ""
+                  categories: []
+            - title: Autonomous Research & Content Generation
+              prompt: ""
+              categories: []
+            - title: Agent Integration & Deployment Tools
+              prompt: ""
+            - title: Multimodal AI & Vision Agents
+              prompt: ""
+              categories:
+                - title: Image Processing & Analysis Agents
+                  prompt: ""
+                  categories: []
+                - title: Video Processing Agents
+                  prompt: ""
+                  categories: []
+                - title: AR/VR/XR Agents
+                  prompt: ""
+                  categories: []
+            - title: Task Automation & Workflow Orchestration
+              prompt: ""
+              categories: []
+            - title: Developer & Coding Assistants
+              prompt: ""
+              categories:
+                - title: IDE Integrations
+                  prompt: ""
+                  categories: []
+                - title: Code Generation & Refactoring
+                  prompt: ""
+                  categories: []
+                - title: Documentation & Testing Assistants
+                  prompt: ""
+                  categories: []
+            - title: GUI & Computer Control AI Agents
+              prompt: ""
+              categories:
+                - title: Desktop Automation
+                  prompt: ""
+                  categories: []
+                - title: Browser & Web Automation
+                  prompt: ""
+                  categories: []
+            - title: Data Processing & ETL Agents
+              prompt: ""
+              categories: []
+            - title: Domain-Specific AI Agents
+              prompt: ""
+              categories:
+                - title: Medical & Healthcare
+                  prompt: ""
+                  categories: []
+                - title: Financial & Trading Systems
+                  prompt: ""
+                  categories: []
+                - title: Legal AI Assistants
+                  prompt: ""
+                  categories: []
+                - title: Educational & Learning Agents
+                  prompt: ""
+                  categories: []
+            - title: Gaming & Simulation Agents
+              prompt: ""
+              categories: []
+            - title: Low-Code/No-Code Platforms
+              prompt: Low-code/no-code platforms for AI agents
+              categories: []
+            - title: Agent Communication & Protocols
+              prompt: Agent communication & protocols for AI agents
+              categories: []
+            - title: Simulation & Benchmarking Environments
+              prompt: Simulation & benchmarking environments for AI agents
+              categories: []
+            - title: Web Automation and UI Interaction
+              prompt: ""
+              categories:
+                - title: Browser Automation
+                  prompt: ""
+                  categories: []
+                - title: UI Interaction
+                  prompt: ""
+                  categories: []
+            - title: Personal Assistants & Conversational Agents
+              prompt: ""
+              categories:
+                - title: Chatbots
+                  prompt: ""
+                  categories: []
+                - title: Virtual Assistants
+                  prompt: ""
+                  categories: []
+                - title: Human-in-the-Loop Agents
+                  prompt: ""
+                  categories: []
+            - title: Audio & Voice Assistants
+              prompt: ""
+              categories: []
+            - title: Security & Privacy Agents
+              prompt: ""
+              categories: []
+            - title: IoT & Smart Home Agents
+              prompt: ""
+              categories: []
+            - title: Corporate and Analytical Applications
+              prompt: ""
+              categories:
+                - title: RAG and Business Analytics
+                  prompt: ""
+                  categories: []
+                - title: Data Integration and Specialized Solutions
+                  prompt: ""
+                  categories: []
+            - title: Developer Tools and Automation
+              prompt: ""
+              categories:
+                - title: Code Automation and Testing
+                  prompt: ""
+                  categories: []
+                - title: Integration and Extensions
+                  prompt: ""
+                  categories: []
+            - title: Educational and Research Resources
+              prompt: ""
+              categories:
+                - title: Courses and Tutorials
+                  prompt: ""
+                  categories: []
+                - title: Research Lists and Survey Projects
+                  prompt: ""
+                  categories: []
+                - title: Training Datasets
+                  prompt: ""
+                  categories: []
+                - title: Research Platforms & Simulators
+                  prompt: ""
+                  categories: []
+project:
+    name: Awesome AI Agents
+    repository: korchasa/awesome-ai-agents
+    note: This repository contains an automatically compiled list of frameworks, tools, and resources related to AI agents, LLMs, and autonomous systems.
+    description: |
+        This curated list focuses on tools and frameworks for building AI agents, including:
+        - Multi-agent systems and autonomous frameworks
+        - Development tools and SDKs
+        - Specialized agents for various domains
+        - Research papers and educational resources
+
+        The projects are automatically categorized and regularly updated. Each entry includes a brief summary, tags, and GitHub stars to help you find the most relevant tools for your needs.
+
+        Pull requests with additional tools and projects are welcome!
+    website:
+        keywords: AI agents, LLM, autonomous systems, multi-agent systems, AI frameworks, AI tools
+        author: Awesome AI Agents Contributors
+        url: https://awesome-ai-agents.korchasa.dev
+        theme_color: '#0366d6'
+        icons:
+            favicon: https://awesome-ai-agents.korchasa.dev/favicon.ico
+            svg: https://awesome-ai-agents.korchasa.dev/icon.svg
+            apple: https://awesome-ai-agents.korchasa.dev/apple-touch-icon.png
+            manifest: https://awesome-ai-agents.korchasa.dev/manifest.webmanifest
+rebalance:
+    max_items_per_leaf: 0
