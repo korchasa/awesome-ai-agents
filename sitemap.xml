@@ -2,11 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://awesome-ai-agents.korchasa.dev/</loc>
-<<<<<<< HEAD
-    <lastmod>2025-12-15</lastmod>
-=======
-    <lastmod>2025-11-08</lastmod>
->>>>>>> 077979e8937e4be52a22f9304a37c14a73fe9308
+    <lastmod>2025-12-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
