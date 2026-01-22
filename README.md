@@ -20,7 +20,7 @@ Table of Contents:
 
         - [Knowledge Graph Orchestration](#knowledge-graph-orchestration) (9)
 
-        - [AI Agent Ecosystems](#ai-agent-ecosystems) (10)
+        - [AI Agent Ecosystems](#ai-agent-ecosystems) (11)
 
         - [LLM-Powered Platforms](#llm-powered-platforms) (14)
 
@@ -252,6 +252,7 @@ Table of Contents:
 - [crewAIInc/crewAI](https://github.com/crewAIInc/crewAI) (★42518 Python) - CrewAI is a fast, flexible Python framework for orchestrating autonomous, role-playing AI agents that collaborate to solve complex tasks, offering both high-level simplicity and low-level control for enterprise-grade AI automation.
 - [daveshap/OpenAI_Agent_Swarm](https://github.com/daveshap/OpenAI_Agent_Swarm) (★3074 Python) - HAAS is a hierarchical autonomous agent swarm leveraging OpenAI's agent APIs to create a self-organizing, ethically governed ecosystem of AI agents that operate fully autonomously under a structured hierarchy for complex task execution.
 - [frdel/agent-zero](https://github.com/frdel/agent-zero) (★10613 Python) - Agent Zero is a customizable, dynamic AI framework that acts as a personal assistant using multi-agent cooperation, tool creation, and autonomous web browsing to accomplish complex tasks interactively.
+- [hashgraph-online/standards-sdk](https://github.com/hashgraph-online/standards-sdk) (★64 TypeScript) - Standards SDK is a TypeScript toolkit for building AI agents on Hedera's decentralized network, featuring agent discovery via the Registry Broker API, HCS-10 agent protocol support, and blockchain-verified agent identities.
 - [intellectronica/ruler](https://github.com/intellectronica/ruler) (★2296 TypeScript) - Ruler centralizes and automates the management of instructions and configurations for multiple AI coding assistants, ensuring consistent guidance and reducing maintenance effort across diverse AI tools in software development projects.
 - [openai/openai-agents-python](https://github.com/openai/openai-agents-python) (★18274 Python) - The OpenAI Agents SDK is a lightweight and powerful framework for building, orchestrating, and tracing multi-agent workflows using large language models with configurable instructions, tools, and safety features.
 
