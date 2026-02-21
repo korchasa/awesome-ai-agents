@@ -190,6 +190,7 @@ Table of Contents:
 #### Agent Monitoring Tools
 
 - [apache/hertzbeat](https://github.com/apache/hertzbeat) (7106 Java) - Apache HertzBeat is an AI-powered open source real-time observability system that unifies metrics and logs collection, alerting, and notification with high performance and customizable monitoring capabilities.
+- [imran-siddique/agent-sre](https://github.com/imran-siddique/agent-sre) (6 Python) - Agent SRE is an SRE platform for AI agents providing SLO-driven reliability, error budgets, chaos testing, canary deploys, and cost guardrails with OpenTelemetry integration.
 - [MervinPraison/PraisonAI](https://github.com/MervinPraison/PraisonAI) (5576 Jupyter Notebook) - PraisonAI is a production-ready Multi AI Agents framework that enables the creation and management of intelligent AI agents to automate and solve complex problems through collaboration and customization.
 - [raga-ai-hub/RagaAI-Catalyst](https://github.com/raga-ai-hub/RagaAI-Catalyst) (16100 Python) - RagaAI Catalyst is a Python SDK platform for observability, monitoring, and evaluation of AI agents and LLM projects, featuring tracing, debugging, advanced analytics, and project management tools.
 - [superset-sh/superset](https://github.com/superset-sh/superset) (2983 TypeScript) - Superset is a turbocharged terminal for macOS that enables parallel execution, monitoring, and management of any CLI-based coding agents using Git worktrees for isolation.
@@ -428,6 +429,7 @@ Table of Contents:
 
 - [Arindam200/awesome-ai-apps](https://github.com/Arindam200/awesome-ai-apps) (9100 Jupyter Notebook) - A comprehensive repository showcasing practical examples, tutorials, and tools for building powerful AI applications using large language models and various AI agent frameworks.
 - [HKUDS/AutoAgent](https://github.com/HKUDS/AutoAgent) (8501 Python) - AutoAgent is a fully-automated, zero-code framework for creating and deploying LLM agents using natural language, featuring top GAIA benchmark performance and broad LLM support.
+- [imran-siddique/agent-os](https://github.com/imran-siddique/agent-os) (61 Python) - Agent OS is a governance kernel for AI agents with POSIX-inspired policies, capability sandboxing, and compliance enforcement. Integrated into Dify and LlamaIndex.
 - [langchain-ai/langserve](https://github.com/langchain-ai/langserve) (2277 JavaScript) - LangServe is a library that enables developers to deploy LangChain runnables and chains as validated, scalable REST APIs with rich features including streaming, tracing, and client SDKs.
 - [mcp-use/mcp-use](https://github.com/mcp-use/mcp-use) (9336 Python) - mcp-use is an open-source unified client library that enables seamless integration of any LangChain-supported LLM with MCP servers to build custom agents with tool access.
 - [MemTensor/MemOS](https://github.com/MemTensor/MemOS) (4846 Python) - MemOS is an operating system for Large Language Models that enhances their capabilities with long-term memory, enabling more context-aware, consistent, and personalized AI interactions through a modular and extensible memory architecture.
