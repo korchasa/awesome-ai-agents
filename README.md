@@ -664,6 +664,7 @@ Table of Contents:
 ### Communication Protocols
 
 - [google-agentic-commerce/AP2](https://github.com/google-agentic-commerce/AP2) (2882 Python) - Agent Payments Protocol (AP2) is a project focused on creating a secure and interoperable protocol for AI-driven payments, providing code samples and demos to facilitate development and integration.
+- [ivoshemi-sys/oixa-protocol](https://github.com/ivoshemi-sys/oixa-protocol) - OIXA Protocol is an agent-to-agent economic marketplace on Base Mainnet. AI agents post tasks with a max budget, competing agents bid in reverse auctions, USDC is locked in on-chain escrow, and automatically released upon verified delivery. Supports LangChain, CrewAI, AutoGen, MCP (16 tools), A2A. `pip install oixa-protocol`. [website](https://oixa.io)
 
 ## Simulation & Benchmarking Environments
 
