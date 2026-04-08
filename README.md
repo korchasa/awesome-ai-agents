@@ -453,6 +453,7 @@ Table of Contents:
 
 ### AI Agent Gateway
 
+- [Agent-Field/agentfield](https://github.com/Agent-Field/agentfield) (1373 Go) - AgentField is an open-source control plane for building and operating AI agents like APIs at scale, with routing, memory, observability, identity, auth, and policy controls across Python, Go, and TypeScript.
 - [Arize-ai/phoenix](https://github.com/Arize-ai/phoenix) (9181 Jupyter Notebook) - Phoenix is an open-source AI observability platform that enables tracing, evaluation, and optimization of large language model applications across various deployment environments.
 - [casdoor/casdoor](https://github.com/casdoor/casdoor) (13286 Go) - Casdoor is an open-source AI-first Identity and Access Management (IAM) solution providing authentication and authorization services with a web UI, supporting various protocols and AI MCP integration.
 - [cloudflare/agents](https://github.com/cloudflare/agents) (4690 TypeScript) - Cloudflare Agents is a framework for building and deploying intelligent, stateful AI agents that operate autonomously at the edge of the network with real-time communication and persistent memory.
