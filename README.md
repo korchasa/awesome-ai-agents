@@ -36,7 +36,7 @@ Table of Contents:
     - [AI Assistants](#ai-assistants) (16)
 - [Agent Integration & Deployment Tools](#agent-integration-&-deployment-tools)
     - [Stateful Serverless Frameworks](#stateful-serverless-frameworks) (5)
-    - [AI Agent Development](#ai-agent-development) (34)
+    - [AI Agent Development](#ai-agent-development) (35)
     - [AI Agent Orchestration](#ai-agent-orchestration) (14)
     - [LLM Framework Tools](#llm-framework-tools) (8)
     - [AI Agent Deployment](#ai-agent-deployment) (7)
@@ -356,6 +356,7 @@ Table of Contents:
 - [MiroMindAI/MiroFlow](https://github.com/MiroMindAI/MiroFlow) (2896 Python) - MiroFlow is an open-source, high-performance research agent framework designed for building and scaling intelligent AI agents to perform complex tasks like future event prediction with state-of-the-art results.
 - [MiroMindAI/MiroThinker](https://github.com/MiroMindAI/MiroThinker) (8201 Python) - MiroThinker is an open-source research agent model designed for advanced tool-augmented reasoning and complex information-seeking tasks, achieving state-of-the-art performance across multiple benchmarks.
 - [NVIDIA-NeMo/Guardrails](https://github.com/NVIDIA-NeMo/Guardrails) (5585 Python) - NeMo Guardrails is an open-source toolkit by NVIDIA for adding programmable guardrails to large language model-based conversational systems to ensure safer, controlled, and trustworthy interactions.
+- [nowork-studio/toprank](https://github.com/nowork-studio/toprank) (124 Python) - Toprank is an open-source Claude Code workflow toolkit for SEO, SEM, and Google Ads that inspects repositories, applies code changes, and automates search-growth tasks through specialized agent skills.
 - [OpenPipe/ART](https://github.com/OpenPipe/ART) (8488 Python) - OpenPipe/ART is an open-source reinforcement learning framework that trains multi-step agents for real-world tasks using GRPO and innovative zero-shot reward scoring with LLMs.
 - [penberg/agentfs](https://github.com/penberg/agentfs) (2888 Rust) - AgentFS is a specialized filesystem for AI agents that provides persistent storage, auditability, and reproducibility through a SQLite-based data model.
 - [pguso/ai-agents-from-scratch](https://github.com/pguso/ai-agents-from-scratch) (3357 JavaScript) - AI Agents From Scratch is an educational repository that teaches users to build AI agents locally using local LLMs and node-llama-cpp, focusing on understanding agent architectures, function calling, memory, and the ReAct pattern through progressive, hands-on examples.
