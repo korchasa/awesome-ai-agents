@@ -13,6 +13,10 @@ The projects are automatically categorized and regularly updated. Each entry inc
 Pull requests with additional tools and projects are welcome!
 
 
+Read it as a website at [awesome-ai-agents.korchasa.dev](https://awesome-ai-agents.korchasa.dev/):
+every project has a page of its own, the weekly issues are archived, and
+[search](https://awesome-ai-agents.korchasa.dev/search/) looks through the whole list at once.
+
 Table of Contents:
 - [AI Agent Frameworks & SDKs](#ai-agent-frameworks-&-sdks)
     - [Multi-Agent Collaboration Systems](#multi-agent-collaboration-systems)
