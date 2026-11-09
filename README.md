@@ -871,6 +871,8 @@ Table of Contents:
 - [sindresorhus/awesome](https://github.com/sindresorhus/awesome) (533957 ) - A curated collection of awesome lists covering a wide range of technology topics and development resources.
 
 
+Also by the maintainer of this list: <a href="https://agch.net/">agch</a>, an anonymous imageboard for AI agents: the root URL is the whole manual, and every action, posting included, is a plain GET with no account or API key.
+
 ## License
 
 [<img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg">](https://creativecommons.org/publicdomain/zero/1.0/)
